@@ -1,0 +1,159 @@
+<div id="bag">
+	<!-- HEADER -->
+	<div class="bar bar-header bar-header-vanderlande">
+
+		<!-- LOGOUT -->
+		<button class="button button-icon icon ion-power header-icon" ng-click="vm.logout()"></button>
+
+		<!-- TITLE -->
+		<div class="h1 title" ng-click="vm.back()">{{vm.currentStation}}</div>
+
+		<!-- MONITORED STATIONS -->
+		<button class="button button-icon icon ion-ios-location header-icon" ng-click="vm.monitor()"></button>
+	</div>
+
+	<!-- SUBHEADER -->
+	<div on-touch="vm.scan()" class="bar bar-subheader bar-subheader-vanderlande">
+		<h2 class="title subheader">Scan</h2>
+	</div>
+
+	<ion-pane>
+		
+		<div ng-show="vm.isError" id="bag-error" class="has-header has-subheader">
+			<div style="display: block">
+				<!-- back -->
+				<button class="button button-icon icon ion-ios-arrow-left back-button" ng-click="vm.back()"></button>
+			</div>
+			<span class="bag-task__text">{{vm.error}}</span>
+			<button id="" on-touch="vm.scan()" class="button button-block button-login"><i class=" ion-ios-refresh-empty"></i> Re-Scan</button>
+		</div>
+		
+		<!-- BAG TASK -->
+		<div ng-hide="vm.isError" id="bag-task" class="has-header has-subheader">
+			<!-- BAG TASK -->
+			<div style="display: block">
+				<!-- back -->
+				<button class="button button-icon icon ion-ios-arrow-left back-button" ng-click="vm.back()"></button>
+			</div>
+
+			<div>
+
+				<span class="bag-task__text">{{vm.bag.task}}</span>
+				<span id="bag-task__lpn">{{vm.bag.lpn}} </span>
+				<span class="bag-task__decorator">{{vm.bag.preposition}}</span>
+				<span class="bag-task__text">{{vm.bag.destination}}</span>
+				<span class="bag-task__decorator" ng-show="vm.bag.currentStoreStation">
+					Location: {{vm.bag.currentStoreStation}} -  {{vm.bag.currentStoreLocation}}</span>
+				<span ng-show="vm.bag.proposedLocation" class="bag-task__decorator">Proposed location: {{vm.bag.proposedLocation}}</span>
+				<button id="taskButton" ng-hide="vm.hasTask == 'ReadOnly'" ng-click="vm.execute()" class="button button-block button-login">{{vm.hasTask}} Bag</button>
+			</div>
+		</div>
+		
+		<!-- BAG TABS -->
+		<div ng-hide="vm.isError" id="bag-tabs" class="">
+			<div id="bag-details">
+
+				<div ui-view="bag-destination"></div>
+
+				<ion-tabs>
+					<ion-tab title="Destination">
+						<ion-nav-view name="Destination">
+							<div class="row bag-tabs-details">
+								<div class="col col-50">Destination <span class="bag-tabs-value">{{vm.bag.destinations.destination}}</span></div>
+								<div class="col col-50">Process <span class="bag-tabs-value">{{vm.bag.process.processName}}</span></div>
+							</div>
+							<div class="row bag-tabs-details">
+								<div class="col col-50">Flight <span class="bag-tabs-value">{{vm.bag.destinations.airline}}  {{vm.bag.destinations.flightNumber}}</span></div>
+								<div class="col col-50">STD / ETD <span class="bag-tabs-value">
+								{{vm.bag.destinations.etd | date : 'HH:mm'}} 
+								/ 
+								{{vm.bag.destinations.std | date : 'HH:mm'}}</span></div>
+							</div>
+							<div class="row bag-tabs-details">
+								<div class="col col-50">Stand <span class="bag-tabs-value">{{vm.bag.destinations.stand}}</span></div>
+								<div class="col col-50">ATL <span class="bag-tabs-value">{{vm.bag.atl}}</span></div>
+							</div>
+						</ion-nav-view>
+					</ion-tab>
+
+					<ion-tab title="Person">
+						<ion-nav-view name="Person">
+
+							<div class="row bag-tabs-details">
+								<div class="col">Name <span class="bag-tabs-value">{{vm.person.surname}}  {{vm.person.givenName}}</span></div>
+							</div>
+							<div class="row bag-tabs-details">
+								<div class="col col-50">Seat<span class="bag-tabs-value">{{vm.person.seat}}</span></div>
+								<div class="col col-50">Pax Status<span class="bag-tabs-value">{{vm.person.paxStatus}}</span></div>
+							</div>
+							<div class="row bag-tabs-details">
+								<div class="col col-50">Freq Travel<span class="bag-tabs-value">{{vm.person.frequentTravelerTierIdentifier}}</span></div>
+								<div class="col col-50">Exception<span class="bag-tabs-value">{{vm.person.exception}}</span></div>
+							</div>
+
+
+						</ion-nav-view>
+					</ion-tab>
+
+					<ion-tab title="Screen">
+						<ion-nav-view name="Screen">
+							<div class="row bag-tabs-details">
+								<div class="col col-50">Last exec task <span class="bag-tabs-value">{{vm.process.lastExecutedTask}}</span></div>
+								<div class="col col-50">Last seen at<span class="bag-tabs-value">{{vm.process.lastSeenAt}}</span></div>
+
+
+							</div>
+							<div class="row bag-tabs-details">
+								<div class="col col-50">Timeliness<span class="bag-tabs-value">{{vm.process.flightBuildTimeliness}}</span></div>
+								<div class="col col-50">Handler<span class="bag-tabs-value">{{vm.process.handler}}</span></div>
+							</div>
+							<div class="row bag-tabs-details">
+								<div class="col">Remark<span class="bag-tabs-value">{{vm.process.remarks}}</span></div>
+							</div>
+						</ion-nav-view>
+					</ion-tab>
+
+					<ion-tab title="Flight">
+						<ion-nav-view name="Flight">
+							<div class="row bag-tabs-details" ng-show="vm.isExist(vm.outbound)">
+								<div class="col col-50">Outbound <span class="bag-tabs-value">{{vm.outbound.airline + vm.outbound.flightNumber}} {{vm.outbound.date | date: 'dd-MMM'}}</span></div>
+								<div class="col col-25">To <span class="bag-tabs-value">{{vm.outbound.destination}}</span></div>
+								<div class="col col-25">Class <span class="bag-tabs-value">{{vm.outbound.classOfTravel}}</span></div>
+							</div>
+							<div class="row bag-tabs-details" ng-show="vm.isExist(vm.inbound)">
+								<div class="col col-50">Inbound <span class="bag-tabs-value">{{vm.inbound.airline + vm.inbound.flightNumber}} {{vm.inbound.date | date: 'dd-MMM'}}</span></div>
+								<div class="col col-25">From<span class="bag-tabs-value">{{vm.inbound.origin}}</span></div>
+								<div class="col col-25">Class <span class="bag-tabs-value">{{vm.inbound.classOfTravel}}</span></div>
+							</div>
+							<div class="row bag-tabs-details" ng-show="vm.isExist(vm.onwards[0])">
+								<div class="col col-50">Onwards <span class="bag-tabs-value">{{vm.onwards[0].airline + vm.onwards[0].flightNumber}} {{vm.onwards[0].date | date: 'dd-MMM'}}</span></div>
+								<div class="col col-25">To<span class="bag-tabs-value">{{vm.onwards[0].destination}}</span></div>
+								<div class="col col-25">Class <span class="bag-tabs-value">{{vm.onwards[0].classOfTravel}}</span></div>
+							</div>
+						</ion-nav-view>
+					</ion-tab>
+
+					<ion-tab title="Status">
+						<ion-nav-view name="Status">
+							<div class="row bag-tabs-details">
+								<div class="col col-50">ULD ID <span class="bag-tabs-value">{{vm.status.uldIdentificationCode}}</span></div>
+								<div class="col col-50">Load Sequence <span class="bag-tabs-value">{{vm.status.loadSequenceNumber}}</span></div>
+
+
+							</div>
+							<div class="row bag-tabs-details">
+								<div class="col col-50">Bag Tag Status <span class="bag-tabs-value">{{vm.status.bagTagStatus}}</span></div>
+								<div class="col col-50">Baggage Status<span class="bag-tabs-value">{{vm.status.bagStatus}}</span></div>
+							</div>
+							<div class="row bag-tabs-details">
+								<div class="col col-50">Loading location<span class="bag-tabs-value">{{vm.status.loadingLocation}}</span></div>
+
+							</div>
+						</ion-nav-view>
+					</ion-tab>
+
+				</ion-tabs>
+			</div>
+		</div>
+	</ion-pane>
+</div>

@@ -1,0 +1,109 @@
+$vanderlande:					  #F17B21 !default;
+
+body{
+	background: #F17B21;
+	color: white;
+}
+
+#logoMTT {
+	position: fixed;
+	width: 110px;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	z-index: 99;
+}
+
+#login{
+	background: white;
+	position: relative;
+	margin: 0 auto;
+	width: 100%;
+	max-width: 412px;
+	min-width: 320px;
+	height: 100%;
+	max-height: 736px;
+	min-height: 480px;
+	
+	.vdl-logo {
+		padding-top: 10px;
+		display: block;
+		position: relative;
+		width: 90%;
+		margin: 0 auto;
+	}
+	
+	.login {
+		position: absolute;
+		background: #F17B21;
+		bottom: 0;
+		width: 100%;
+		.login-form{
+			padding: 0 1.5em 1.5em;
+		}
+		&:before {
+			content: '';
+			background-image: url('../images/MTTIcon.png');
+			background-size:100% auto;
+			position: absolute;
+			top: -60px;
+			left: 50%;
+			margin-left: -60px;
+			width: 120px;
+			height: 120px;
+		}
+	}
+	.login-form{
+		margin-top: 90px;
+		
+	}
+	.img-responsive{
+		width: 100%;
+		height: auto;
+	}
+	.item-instructions {
+		margin-bottom: 5;
+		color: white;
+	}
+	.form-group{
+		margin-bottom: 8px;
+		.item-label{
+		@include border-radius(8px);
+		}
+	}
+	.button-login {
+		margin-top: 20px;
+		@include border-radius(8px);
+		border-color: #727373;
+	}
+	.button-mode {
+		margin-top: 15px;
+		@include border-radius(8px);
+		border-color: #727373;
+		font-size: 16px;
+	}
+}
+
+#toast-container > div {
+	opacity: 0.95;
+}
+
+// Buttons
+// -------------------------------
+$button-custom-bg: #F17B21 !default;
+$button-custom-text: #fff !default;
+$button-custom-border: #727373 !default;
+$button-custom-active-bg: darken(#F17B21, 10%) !default;
+$button-custom-active-border: darken(#727373, 10%) !default;
+
+&.button-login {
+	@include button-style($button-custom-bg, $button-custom-border, $button-custom-active-bg, $button-custom-active-border, $button-custom-text);
+	@include button-clear($button-custom-bg);
+	@include button-outline($button-custom-bg);
+}
+
+&.button-mode {
+	@include button-style($button-custom-bg, $button-custom-border, $button-custom-active-bg, $button-custom-active-border, $button-custom-text);
+	@include button-clear($button-custom-bg);
+	@include button-outline($button-custom-bg);
+}

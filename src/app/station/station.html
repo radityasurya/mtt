@@ -1,0 +1,65 @@
+<div id="station">
+	
+	<!-- HEADER -->
+	<div class="bar bar-header bar-header-vanderlande">
+	
+		<!-- back -->
+		<button ng-show="vm.isCurrentStationExist" class="button button-icon icon ion-ios-arrow-left header-icon" ng-click="vm.back()"></button>
+		
+		<div class="h1 title">Select Location</div>
+		
+	</div>
+	
+	<!-- SUBHEADER -->
+	<div class="bar bar-subheader bar-subheader-vanderlande" on-touch="vm.scan()" >
+		<h2 class="title subheader">Scan</h2>
+	</div>
+	
+	<!-- CONTENT -->
+	<ion-content class="has-header has-subheader" padding="true" scrollbar-y="false" style="padding-right=0;">
+		
+		<!-- LIST OF STATIONS -->
+		<ion-list class="list-station">
+			
+			<!-- STATION ITEM -->
+			<ion-item ng-show="vm.isOnline" class="item-location item-icon-left item-icon-right" ng-repeat="(key, value) in vm.filterStations(vm.type)" item="station" ui-sref="station-detail({stationName: key, stationType: value.type, locations: value.locations})">
+				
+				<!-- TYPE ICON -->
+				<i class="icon">
+					<img class="image-responsive list-station-icon" ng-src="images/{{value.type}}.png">
+				</i>
+				
+				<!-- STATION NAME -->
+				{{key}}
+				
+				<i class="icon ion-ios-arrow-right icon-arrow"></i>
+
+			</ion-item>
+			
+            <!-- OFFLINE STATION ITEM -->
+			<ion-item ng-show="!vm.isOnline" class="item-location item-icon-left item-icon-right" ng-repeat="station in vm.offlineStations" item="station" ui-sref="station-offline({stationName: station.StationName})">
+				
+				<!-- TYPE ICON -->
+				<i class="icon">
+					<img class="image-responsive list-station-icon" ng-src="images/{{station.StationType}}.png">
+				</i>
+				
+				<!-- STATION NAME -->
+				{{station.StationName}}
+				
+				<i class="icon ion-ios-arrow-right icon-arrow"></i>
+
+			</ion-item>
+	
+		</ion-list>
+		
+	</ion-content>
+	<div class="bar bar-footer bar-dark" ng-show="vm.isOnline">
+		<div class="button-bar bar-dark">
+			<a class="button" ng-click="vm.type = 'Screening'">Screen</a>
+			<a class="button" ng-click="vm.type = 'Store'">Store</a>
+			<a class="button" ng-click="vm.type = 'Stillage'">Stillage</a>
+			<a class="button" ng-click="vm.type = 'Tracking'">Tracking</a>
+		</div>
+	</div>
+</div>

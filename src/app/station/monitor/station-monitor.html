@@ -1,0 +1,36 @@
+<div id="station-monitor">
+
+	<!-- HEADER -->
+	<div class="bar bar-header bar-header-vanderlande">
+
+		<!-- back -->
+		<button class="button button-icon icon ion-ios-arrow-left header-icon" ng-click="vm.back()"></button>
+
+		<!-- TITLE -->
+		<div class="h1 title">Monitored Stations</div>
+		
+		<!-- show people -->
+		<button ng-hide="true" class="button button-icon icon ion-person-stalker white" ng-click="vm.overview()"></button>
+		
+	</div>
+
+	<ion-content class="has-header" scrollbar-y="false" style="padding-right=0;">
+		
+		<!-- List available station -->
+		<ion-list class="list-monitor">
+		
+			<ion-checkbox class="monitor-item" ng-repeat="station in vm.storeStations" ng-model="station.checked" ng-checked="station.checked" ng-class="{'tatatat': station.checked}">
+				{{station.stationName}}
+			</ion-checkbox>
+			
+		</ion-list>
+
+	</ion-content>
+
+	<ion-footer-bar class="bar-assertive">
+		<div class="button-bar">
+			<button class="button" ng-click="vm.selectAll()">Select All</button>
+			<button class="button" ng-click="vm.deselectAll()">Deselect All</button>
+		</div>
+	</ion-footer-bar>
+</div>

@@ -1,0 +1,47 @@
+/* COLORS */
+$orange : #F17B21;
+$dark-orange : #da5c28;
+$bg-active : #F7F7F7;
+$icon-color : #b6c2d1;
+$header-color : #ffffff;
+$subheader-bg : #f7f6ed;
+$subheader-color: #89898b;
+
+/* ICONS */
+$icon-size : 24px;
+
+/* ============================== HEADER ============================== */
+
+/* HEADER */
+.bar-header-vanderlande {
+	background: $orange;
+
+	/* HEADER TITLE */
+	.title {
+		font-weight: lighter;
+		color: $header-color;
+	}
+	
+	.header-icon {
+		color: $header-color!important;
+		&:before {
+			font-size: $icon-size!important;
+		}
+	}
+	
+}
+
+/* SUB-HEADER */
+.bar-subheader-vanderlande {
+	background: $subheader-bg;
+    height: 30px;
+
+	/* SUB-HEADER TITLE */
+	.title {
+		color: $subheader-color;
+		font-weight: 400!important;
+		font-size: 14px!important;
+		height: 28px!important;
+		margin-top:-6px!important;
+	}
+}

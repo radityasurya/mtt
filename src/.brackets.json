@@ -1,0 +1,10 @@
+{
+    "jscodehints.detectedExclusions": [
+        "D:/xampp/htdocs/internship/MTT/src/lib/ngCordova/dist/ng-cordova.min.js",
+        "D:/xampp/htdocs/internship/MTT/src/app/core/app.core.module.js",
+        "D:/xampp/htdocs/MTT/src/app/app.routes.js",
+        "D:/xampp/htdocs/MTT/src/app/app.module.js",
+        "D:/xampp/htdocs/MTT/src/app/db/sqlite.service.js",
+        "D:/xampp/htdocs/MTT/src/app/app.run.js"
+    ]
+}

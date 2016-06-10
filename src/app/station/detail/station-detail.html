@@ -1,0 +1,125 @@
+<!--
+$$hashKey:"object:549"
+etdStd:"2016-03-18T11:30:03.467+0000"
+flightNumber:"SA1104"
+lpn:"1234567890"
+storeLocation:"PB Store 1"
+storeStation:"(S)OOG PBStore"
+taskDescription:"Deliver"
+taskDestinations:"240"
+taskType:"OTHER"
+-->
+
+<div id="station-detail">
+
+	<!-- HEADER -->
+	<div class="bar bar-header bar-header-vanderlande">
+		
+		<!-- LOGOUT -->
+		<button class="button button-icon icon ion-power header-icon" ng-click="vm.logout()"></button>
+		
+		<!-- TITLE -->
+		<div class="h1 title" ng-click="vm.back()">{{vm.currentStation}}</div>
+		
+		<!-- MONITORED STATIONS -->
+		<button class="button button-icon icon ion-ios-location header-icon" ng-click="vm.monitor()"></button>
+	</div>
+	
+	<!-- SUBHEADER -->
+	<div on-touch="vm.scan()" class="bar bar-subheader bar-subheader-vanderlande">
+		<h2 class="title subheader">Scan</h2>
+	</div>
+	
+	<!-- CONTENT -->
+	<ion-content class="has-header has-subheader" scrollbar-y="false" style="padding-left=0">
+	
+		<!-- NO BAGS TO PROCESS -->
+		<div class="scanbag" ng-show="!vm.isExist">
+			Scan Bag
+			<br><span>for</span>
+			<br>Task
+		</div>
+		
+		<!-- BAGS TO PROCESS LIST -->
+		<ion-list ng-show="vm.isExist" class="list-station-details" can-swipe="true">
+		
+			<!-- BAG ITEMS -->
+			<ion-item class="item-station-details" ng-repeat="bags in vm.bagsToProcess" item="station" 
+			ng-click="vm.open(bags.lpn)">
+				<div class="box">
+					<!-- BAG DETAILS -->
+					<div class="row bag-details">
+
+						<!-- TIME LEFT -->
+						<div class="bag-detail-time">
+							<span>15 Minutes</span>
+						</div>
+
+						<!-- COL 1: ICON -->
+						<div class="col bag-detail-icons">
+							<div class="row">
+								<i class="icon">
+									<img class="image-responsive bag-tags-icon"
+									ng-src="images/{{vm.getIcon(bags.taskDescription)}}">
+								</i>
+							</div>
+						</div>
+
+						<!-- COL 2 -->
+						<div class="col col-33 bag-detail-col">
+
+							<!-- BAG TAG -->
+							<div id="bag-tag" class="col">
+								<div class="row bag-tags-title">Bag Tag</div>
+								<div class="row bag-tags-value">{{bags.lpn}}</div>
+							</div>
+
+							<!-- FLIGHT CODE -->
+							<div id="bag-flight" class="col">
+								<div class="row bag-tags-title">Flight</div>
+								<div class="row bag-tags-value">{{bags.flightNumber}}</div>
+							</div>
+						</div>
+
+						<!-- COL 3 -->
+						<div class="col col-40 bag-detail-col">
+
+							<!-- TASK -->
+							<div id="bag-tasks" class="col">
+								<div class="row bag-tags-title">Task</div>
+								<div class="row bag-tags-value">{{vm.setTaskDescription(bags)}}</div>
+							</div>
+
+							<!-- STORE LOCATION -->
+							<div id="bag-store" class="col">
+								<div class="row bag-tags-title">Store Location</div>
+								<div class="row bag-tags-value">{{bags.storeStation}}</div>
+								<div class="row bag-tags-value">{{bags.storeLocation}}</div>
+							</div>
+						</div>
+
+						<!-- COL 4 -->
+						<div class="col col-arrow">
+							<i class="icon ion-ios-arrow-right icon-arrow"></i>
+						</div>
+					</div>
+				</div>
+				<!-- SLIDE OPTIONS -->
+				
+				<!-- TASK -->
+				<ion-option-button class="button-release" ng-click="vm.execute(bags)">
+					<div>
+						<i class="icon ion-ios-upload">	</i>
+						<span>Release</span>
+					</div>
+				</ion-option-button>
+				
+				<!-- DELETE/MISSING -->
+				<ion-option-button ng-hide="true" class="button-assertive" ng-click="edit(item)">
+					Missing <br> Bag
+				</ion-option-button>
+			</ion-item>
+		</ion-list>
+
+	</ion-content>
+</div>

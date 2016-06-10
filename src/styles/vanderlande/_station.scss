@@ -1,0 +1,213 @@
+/* COLORS */
+$orange : #F17B21;
+$dark-orange : #da5c28;
+$bg-active : #F7F7F7;
+$icon-color : #b6c2d1;
+$header-color : #fff;
+$subheader-bg : #f7f6ed;
+$subheader-color: #89898b;
+
+/* ICONS */
+$icon-size : 24px;
+
+/* ============================== SELECT LOCATION ============================== */
+
+/* LOCATION LIST */
+
+#station {
+	.padding {
+		padding-right: 0;
+	}
+}
+
+.list-station{
+	text-align: center;
+	.list{ margin-left: 15px; }
+	
+	/* LOCATION */
+	.item-location {
+		color: $dark-orange;
+		border-left: none;
+		border-right: none;
+		
+		// HOVER
+		.activated {
+			background: $bg-active!important;
+			border: $bg-active!important;
+		}
+		
+		// ICON
+		.list-station-icon {
+			width: $icon-size;
+		}
+		
+		// CONTENT
+		.item-content{
+			padding-top: 26px!important;
+			padding-bottom: 26px!important;
+			padding-left: 49px!important;
+		}
+	}
+}
+
+/* ============================== STATION DETAIL ============================== */
+$bag-title: #696b6f;
+$bag-value: #f27d24;
+$red-warning: #c0242c;
+$green-ok: #209d56;
+
+/* NO BAGS TO PROCESS */
+.scanbag{
+	color: #b5c1d0;
+	text-align: center;
+	margin-top: 70px;
+	font-size: 34px;
+	line-height: 28px;
+	font-weight: lighter;
+	span{
+		font-size: 20px;
+	}
+}
+
+/* BAGS TO PROCESS */
+
+/* BAG LIST ITEMS */
+.list-station-details {
+	.list{ margin-left: 0px; }
+
+	/* BAG DETAILS */
+	.item-station-details {
+		color: #da5c28;
+		border-left: none;
+		border-right: none;
+		
+		/* HOVER */
+		.activated {
+			background: #F7F7F7!important;
+			border-color: #F7F7F7!important;
+		}
+		
+		/* CONTENT */
+		.item-content {
+			padding: 0!important;
+			border-left: none!important;
+		}
+		.bag-details {
+			padding: 0!important;
+		}
+		
+		/* BAG DETAIL: TIME */
+		.bag-detail-time {
+			position: absolute;
+			bottom: 4px;
+			right: 0;
+			
+			span {
+				background: #F3F3F3;
+				color: #696b6f;
+				font-size: 10px;
+				padding: 5px;
+				text-align: center;
+				line-height: 14px;
+				
+				.warning {
+					background: red;
+					color: white;
+				}
+			}
+		}
+		
+		/* BAG DETAIL: ICONS */
+		.bag-detail-icons {
+			margin-left: 10px;
+			margin-top: 15px;
+			padding-right: 0px;
+			
+			/* ICON SIZE */
+			.bag-tags-icon {
+				width: 24px;
+			}
+		} 
+		
+		#bag-flight {
+			padding-top: 0;
+			.bag-tags-title {
+				padding-top: 0;
+			}
+		}
+		
+		#bag-store {
+			padding-top: 0;
+			.bag-tags-title {
+				padding-top: 0;
+			}
+		}
+		
+		.bag-detail-col {
+			margin-left: -15px;
+		}
+				
+		.bag-tags-title {
+			color: $bag-title;
+			font-size: 14px;
+		}
+		.bag-tags-value {
+			color: $bag-value;
+			font-size: 14px;
+		}
+		
+		.button-release {
+			background: $orange;
+			color: white;
+			
+			.button.activated {
+				background: #D96F1E!important;
+			}
+		}
+		
+		.icon-arrow{
+			color: $bag-value;
+			font-size: 24px;
+		}
+		.col-arrow {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+
+	}
+	
+}
+
+.ion-option-button {
+	.button-release {
+		.button { 
+			.activated {
+				background: #D96F1E!important;
+			}
+		}
+	}
+}
+
+ion-option-button.button-release.button.activated {
+	background: #D96F1E!important;
+
+}
+
+/* ============================= MONITORED STATION ============================= */
+
+
+.monitor-item {
+	padding-top: 20px;
+	padding-bottom: 20px;
+	background: #F7F7F7;
+	opacity: 0.7;
+	color: #696b6f;
+	
+
+}
+
+.tatatat {
+	background: #FFFFFF;
+	opacity: 1;
+}

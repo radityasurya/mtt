@@ -1,0 +1,31 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {}
+    },
+    "installed_plugins": {
+        "cordova-plugin-barcodescanner": {
+            "PACKAGE_NAME": "com.vanderlande.MTT"
+        },
+        "cordova-plugin-splashscreen": {
+            "PACKAGE_NAME": "com.vanderlande.MTT"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "com.vanderlande.MTT"
+        },
+        "ionic-plugin-keyboard": {
+            "PACKAGE_NAME": "com.vanderlande.MTT"
+        },
+        "cordova-sqlite-storage": {
+            "PACKAGE_NAME": "com.vanderlande.MTT"
+        }
+    },
+    "dependent_plugins": {
+        "cordova-plugin-compat": {
+            "PACKAGE_NAME": "com.vanderlande.MTT"
+        }
+    }
+}

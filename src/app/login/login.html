@@ -1,0 +1,55 @@
+<!-- LOGIN VIEW -->
+<div id="login">
+	<ion-content class="login-box" scroll="false" overflow-scroll="false" scroll="true">
+		<div class="box" ng-style="{'min-height': vm.box}">
+			<!-- VANDERLANDE LOGOS -->
+			<img class="vdl-logo" ng-src="images/vanderlande.png">
+
+			<!-- ERROR MESSAGE -->
+			<toaster-container toaster-options="{'close-button':true, 'position-class': 'toast-top-right'}"></toaster-container>
+		</div>
+
+		<!-- LOGIN FORM -->
+		<div class="login" ng-style="{'min-height': vm.box}">
+			<form name="loginForm" ng-submit="vm.login()" novalidate="" class="login-form">
+				<!-- Mode BUTTON -->
+				<div id="mode" ng-hide="vm.showLogin">
+					<button type="button" class="button button-block button-mode" ng-click="vm.showLogin = true; vm.isOnline = false;"><i class="icon ion-wifi"></i> Offline Mode</button>
+					<button type="button" class="button button-block button-mode" ng-click="vm.showLogin = true; vm.isOnline = true;"><i class="icon ion-wifi"></i> Online Mode</button>
+				</div>
+				<div ng-show="vm.showLogin">
+					<p class="item-instructions">Enter or scan credentials:</p>
+					<div class="list">
+						<!-- USERNAME -->
+						<div class="form-group">
+							<label class="item item-input item-label">
+								<input name="username" type="text" placeholder="Name" ng-model="vm.username" ng-minlength="5" required>
+							</label>
+						</div>
+						<!-- PASSWORD -->
+						<div class="form-group" ng-show="vm.isOnline">
+							<label class="item item-input item-label">
+								<input name="password" type="password" placeholder="Password" ng-minlength="5" ng-model="vm.password" required>
+							</label>
+						</div>
+
+						<div class="row">
+							<div class="col">
+								<!-- BACK BUTTON -->
+								<button type="button" class="button button-block button-login" ng-click="vm.showLogin = false"> <i class="icon ion-ios-arrow-left"></i> Back</button>
+							</div>
+							<div class="col">
+								<!-- LOGIN BUTTON -->
+								<button type="submit" class="button button-block button-login"><i class="icon ion-log-in"></i> Login</button>
+							</div>
+						</div>
+
+
+
+					</div>
+				</div>
+
+			</form>
+		</div>
+	</ion-content>
+</div>

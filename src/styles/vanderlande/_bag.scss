@@ -1,0 +1,73 @@
+#bag-error {
+	position: relative;
+	background-color: #ffffff;
+	color: black;
+	text-align: center;
+	font-size: xx-large;
+	line-height: normal;
+	padding: 20px;
+}
+#bag-task {
+	position: relative;
+	min-height: 50%;
+	background-color: #ffffff;
+	color: black;
+	text-align: center;
+	font-size: xx-large;
+	line-height: normal;
+	padding: 20px;
+}
+
+#bag-tabs {
+	color: black;
+	min-height: 45%;
+	background-color: #f7f6ed;
+	bottom: 0;
+}
+
+#bag-task__lpn {
+	color: darkorange;
+	padding-top: 10px;
+}
+.bag-task__decorator {
+	font-size: large;
+	font-weight: lighter;
+	display: block;
+}
+
+#taskButton {
+	position: absolute;
+	bottom: 20px;
+	left: 0;
+	right: 0;
+	margin: 0 auto;
+	width: 80%;
+}
+
+.back-button {
+	justify-content: flex-start;
+	display: flex;
+	color: #F17B21;
+	padding: 0;
+	&:before {
+		font-size: 24px!important;
+	}
+}
+#bag-details {
+	margin-top: 15%;
+	padding-top: 20px;
+}
+
+.tab-content {
+	padding: 3%;
+	font-size: 1em;
+}
+
+.bag-tabs-value {
+	display: block;
+	color: darkorange;
+}
+
+.bag-tabs-details{
+	color: #57595D;
+}

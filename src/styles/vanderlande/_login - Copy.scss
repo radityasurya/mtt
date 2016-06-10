@@ -1,0 +1,72 @@
+// LOGIN
+
+body{
+	background: #F17B21;
+	color: white;
+}
+
+// GRID
+.row-12 { height: 100%; }
+.row-6 { height: 50%; }
+
+// Scroll
+.scroll {
+	height: 100%;
+}
+
+#login{
+	background: #F17B21;
+	height: 100%;
+	padding-top: 5%;
+	.login-box{
+		.center {
+			margin-left: auto;
+			margin-right: auto;
+			display: block;
+		}
+		color: white;
+	}
+	#vanderlande{
+		position: absolute;
+		top: 0;
+		background: white;
+		img {
+			height: auto;
+			@include tablet {
+				height: auto;
+			}
+		}
+		h1{
+			display: block;
+			text-indent: -9999px;
+		}
+	}
+	#login-form {
+		position: absolute;
+		bottom: 0;
+		min-height: 300px;
+		height: 50%;
+		padding-top: 25px;
+	}
+	.img-responsive{
+		width: 100%;
+		height: auto;
+	}
+	.item-instructions {
+		margin-bottom: 5;
+		color: white;
+	}
+	.form-group{
+		margin-bottom: 8px;
+		.item-label{
+			@include border-radius(8px);
+		}
+	}
+	.button-login{
+		margin-top: 20px;
+		@include border-radius(8px);
+		color: white;
+		background: transparent;
+		border-color: #727373;
+	}
+}
