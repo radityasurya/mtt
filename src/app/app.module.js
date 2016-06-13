@@ -13,5 +13,6 @@
         'app.login',
         'app.station',
         'app.bag',
+		'app.sync'
     ]);
 })();

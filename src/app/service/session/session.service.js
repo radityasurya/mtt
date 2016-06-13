@@ -23,7 +23,7 @@
         // variable
         var currentStation = {};
         var currentMonitoredStations = {};
-        var isOnline = true;
+        var isOnline = false;
         
 		var service = {
 			fetchSupport: fetchSupport,
@@ -88,7 +88,6 @@
 			
 			return defer.promise;
 
- 
 		}
 		
 		/**

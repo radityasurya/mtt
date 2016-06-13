@@ -35,28 +35,51 @@
         var vm = this;
 
         SessionService.setCurrentStation($stateParams);
-
+		
         vm.currentStation = $stateParams.stationName;
         vm.logout = logout;
-        vm.monitor = monitor;
+        vm.sync = sync;
         vm.back = back;
         vm.scan = scan;
         vm.isExist = false;
-        vm.setTaskDescription = setTaskDescription;
-        vm.getIcon = getIcon;
-        vm.bagsToProcess = null;
-        vm.open = open;
-        vm.execute = execute;
         vm.add = add;
+		vm.records = [];
+		vm.removeRecords = removeRecords;
+		vm.bagsNr = 0;
 
         ////////////////
 
         function activate() {
             console.log('activated');
-        }
-
-        function execute(bag) {
-            console.log(bag);
+			$ionicPlatform.ready(function () {
+				vm.records = [];
+				
+				StationOfflineService.getBagsToProcess()
+				.then(function (response) {
+					console.log(response);
+					vm.bagsNr = response.rows.length;
+					if (response.rows.length > 0) {
+						vm.isExist = true;
+						
+						for (var i = 0; i < response.rows.length; i++) {
+							vm.records.unshift(response.rows.item(i));
+						}
+						
+					} else {
+						vm.isExist = false;
+						console.log('kosong');
+					}
+					
+				}, function (error) {
+					console.log(error);
+				});
+				
+				if (StationOfflineService.getNumberOfRecords() > 0) {
+					// add add di database
+					vm.isExist = true;
+					console.log('ada isi');
+				}
+			});
         }
 
         $scope.$on('$ionicView.enter', function () {
@@ -72,8 +95,8 @@
             $state.go('station');
         }
 
-        function monitor() {
-            $state.go('station-monitor');
+        function sync() {
+            $state.go('sync');
         }
 
         function open(lpn) {
@@ -82,6 +105,18 @@
                 'lpn': lpn
             });
         }
+			
+		function removeRecords(lpn) {
+			$ionicPlatform.ready(function () {
+				StationOfflineService.deleteRecord(lpn)
+				.then(function (response) {
+					console.log('kehapus');
+					activate();
+				}, function (error) {
+					console.log(error);
+				});
+			});
+		}
 
         function scan() {
             console.log('scan');
@@ -107,7 +142,6 @@
             console.log(lpn);
 
             // check valid 10key
-            
             var trackRecord = {'lpn': lpn, 'username': UserService.getUser().username, 
                                'isScanned': true, 
                                'currentStation': SessionService.getCurrentStation().stationName};
@@ -121,6 +155,7 @@
                 console.log(trackRecord);
                 StationOfflineService.insertTrackRecord(trackRecord).then(function (res) {
                     console.log(res);
+					activate();
                 }, function (err) {
                     console.log(err);
                 });
@@ -146,105 +181,5 @@
             });
         }
 
-        function getTask(bagFromJSON) {
-            var stationType = SessionService.getCurrentStation().stationType;
-
-            console.log('The Station Type: ' + stationType);
-
-            var tempTask = '';
-
-            /*switch (stationType) {
-				case 'Screening':
-					if (BagService.canScreen(bagFromJSON)) {
-						tempTask = 'Screen';
-					} else {
-						tempTask = 'ReadOnly';
-					}
-					break;
-				case 'Store':
-					if (BagService.canStore(bagFromJSON)) {
-						tempTask = 'Store';
-					} else {
-						tempTask = 'ReadOnly';
-					}
-					break;
-				case 'Stillage':
-					if (BagService.canDeliver(bagFromJSON)) {
-						tempTask = 'Deliver';
-					} else {
-						tempTask = 'ReadOnly';
-					}
-					break;
-				default:
-					tempTask = 'ReadOnly';
-					break;	
-			}
-            */
-            return tempTask;
-
-        }
-
-        function setTaskDescription(bag) {
-
-            var _description = '';
-
-            _description += bag.taskDescription;
-            _description += getPrePosition(bag.taskDescription);
-            _description += bag.taskDestinations;
-
-            return _description;
-        }
-
-        function getIcon(taskDescription) {
-            var icon = '';
-
-            if (taskDescription !== null) {
-                switch (taskDescription.toLowerCase()) {
-                case 'store':
-                    icon = 'Store.png';
-                    break;
-                case 'screen':
-                    icon = 'Screening.png';
-                    break;
-                case 'deliver':
-                    icon = 'Stillage.png';
-                    break;
-                case 'release':
-                    icon = 'StationTypeRelease.png';
-                    break;
-                default:
-                    icon = 'Store.png';
-                    break;
-                }
-            }
-
-            return icon;
-        }
-
-        function getPrePosition(taskDescription) {
-            var prePosition = '';
-
-            if (taskDescription !== null) {
-                switch (taskDescription.toLowerCase()) {
-                case 'store':
-                    prePosition = ' in ';
-                    break;
-                case 'screen':
-                    prePosition = ' at ';
-                    break;
-                case 'deliver':
-                    prePosition = ' to ';
-                    break;
-                case 'release':
-                    prePosition = ' from ';
-                    break;
-                default:
-                    prePosition = ' at ';
-                    break;
-                }
-            }
-
-            return prePosition;
-        }
     }
 })();

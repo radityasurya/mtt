@@ -28,7 +28,8 @@
 			offlineLogin: offlineLogin,
             getBagsToProcess: getBagsToProcess,
             getNumberOfRecords: getNumberOfRecords,
-            insertTrackRecord: insertTrackRecord
+            insertTrackRecord: insertTrackRecord,
+			deleteRecord: deleteRecord
 		};
 
 		return service;
@@ -47,23 +48,24 @@
         
         function getNumberOfRecords() {
             
-            var nr = 0;
-    
             getBagsToProcess().then(function (res) {
-               nr = res.rows.length;
-            }, function (err) {
-                console.log(err);
-                nr = 0;
-            });
-            
-            return nr;
+            return res.rows.length;
+			});
+        
         }
         
+		function deleteRecord(lpn) {
+			console.log(lpn);
+			var query = 'DELETE FROM BagsToProcess WHERE LPN = ' + lpn;
+			console.log(query);
+			return $q.when(sqliteService.insert(query));
+		}
+		
         function insertTrackRecord(trackRecord) {
             var query = 'INSERT INTO "BagsToProcess" ';
             query += '("LPN", "Username", "StationName") ';
             query += 'VALUES ("' + trackRecord.lpn + '", "' + trackRecord.username + '", '; 
-            query += '"' + trackRecord.station + '")';
+			query += '"' + trackRecord.currentStation + '")';
             return $q.when(sqliteService.insert(query));
         }
 	

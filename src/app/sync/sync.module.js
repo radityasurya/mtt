@@ -2,11 +2,11 @@
 	'use strict';
 
 	angular
-		.module('app.station', [
+		.module('app.sync', [
 		'ionic',
 		'ngCordova',
 		'app.service',
-        'app.bag',
-		'app.sync'
+		'app.bag',
+		'app.station'
 	]);
 })();

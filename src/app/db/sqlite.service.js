@@ -20,11 +20,10 @@
 
 			'DROP TABLE IF EXISTS Users;',
 			'DROP TABLE IF EXISTS Stations;',
-			'DROP TABLE IF EXISTS BagsToProcess;',
-
+			
 			'CREATE TABLE Users (id integer primary key autoincrement, Username text not null);',
 			'CREATE TABLE Stations(id integer primary key autoincrement,StationName text not null, StationType text not null, StationLocation text);',
-			'CREATE TABLE BagsToProcess(id integer primary key autoincrement, LPN integer not null, Username text not null, StationName text not null);',
+			'CREATE TABLE IF NOT EXISTS BagsToProcess(id integer primary key autoincrement, LPN integer not null, Username text not null, StationName text not null);',
 
 			'INSERT INTO "Stations" ("id","StationName", "StationType", "StationLocation") VALUES (1, "OOG Store", "Store","Rack 1, Rack 2, Rack 3");',
 			'INSERT INTO "Stations" ("id","StationName", "StationType", "StationLocation") VALUES (2, "HBS North", "Screening", NULL);',

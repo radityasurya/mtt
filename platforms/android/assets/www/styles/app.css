@@ -9378,6 +9378,16 @@ ion-option-button.button-release.button.activated {
   opacity: 1;
 }
 
+.bag-tags-value--offline {
+  color: #000;
+  font-size: 1.9em;
+}
+
+.bag-station-value--offline {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
 #bag-error {
   position: relative;
   background-color: #fff;

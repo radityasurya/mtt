@@ -49,6 +49,11 @@
 			templateUrl: 'app/bag/bag.html',
 			params: {'lpn': ''}, 
 			controller: 'BagController as vm',
+		})
+		.state('sync', {
+			url: '/sync',
+			templateUrl: 'app/sync/sync.html',
+			controller: 'SyncController as vm',
 		});
 
         // Each tab has its own nav history stack which is defined in the corresponding module.

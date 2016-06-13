@@ -1,0 +1,28 @@
+<div id="station-monitor">
+
+	<!-- HEADER -->
+	<div class="bar bar-header bar-header-vanderlande">
+
+		<!-- back -->
+		<button class="button button-icon icon ion-ios-arrow-left header-icon" ng-click="vm.back()"></button>
+
+		<!-- TITLE -->
+		<div class="h1 title">{{vm.currentStation}}</div>
+
+		<!-- show people -->
+		<button ng-hide="true" class="button button-icon icon ion-person-stalker white" ng-click="vm.overview()"></button>
+
+	</div>
+
+	<ion-content class="has-header" scrollbar-y="false" style="padding-right=0;">
+		<div class="list">
+			<div class="row" style="color: black; padding-top: 20px; text-align: center">
+				<div class="col col-center">
+					<h2>Uploading</h2>
+				</div>
+			</div>
+		</div>
+	
+	</ion-content>
+
+</div>
