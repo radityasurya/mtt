@@ -10,6 +10,7 @@
     "ngCordova": "^0.1.26-alpha",
     "angular-base64": "^2.0.5",
     "AngularJS-Toaster": "angularjs-toaster#^2.0.0",
-    "ionic-close-popup": "^0.0.1"
+    "ionic-close-popup": "^0.0.1",
+    "angular-svg-round-progressbar": "^0.4.4"
   }
 }

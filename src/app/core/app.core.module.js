@@ -7,6 +7,7 @@
 		'ngCordova',
         'base64',
         'toaster',
+		'angular-svg-round-progressbar',
 		
         /* Cross-app module */
         // 'my.appModule',
