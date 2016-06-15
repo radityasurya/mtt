@@ -9219,6 +9219,47 @@ button.swiper-pagination-bullet {
   color: #fff;
 }
 
+.button-sync {
+  background-color: #F17B21;
+  color: #fff;
+}
+
+.button-sync:hover {
+  color: #fff;
+  text-decoration: none;
+}
+
+.button-sync.activated,
+.button-sync.active {
+  border-color: #595959;
+  background-color: #d2620d;
+}
+
+.button-sync.button-clear {
+  border-color: transparent;
+  background: 0 0;
+  box-shadow: none;
+  color: #F17B21;
+}
+
+.button-sync.button-icon {
+  border-color: transparent;
+  background: 0 0;
+}
+
+.button-sync.button-outline {
+  border-color: #F17B21;
+  background: 0 0;
+  color: #F17B21;
+}
+
+.button-sync.button-outline.activated,
+.button-sync.button-outline.active {
+  background-color: #F17B21;
+  box-shadow: none;
+  color: #fff;
+}
+
 #station .padding {
   padding-right: 0;
 }
@@ -9428,7 +9469,6 @@ ion-option-button.button-release.button.activated {
 }
 
 #taskButton {
-  position: absolute;
   bottom: 20px;
   left: 0;
   right: 0;
@@ -9476,4 +9516,35 @@ ion-option-button.button-release.button.activated {
 
 .popup .popup-head .popup-title {
   color: #fff;
+}
+
+.progress-wrapper {
+  position: relative;
+  margin: 20px auto;
+}
+
+.progress {
+  position: absolute;
+  color: #bbb;
+  font-weight: 100;
+  line-height: 1;
+}
+
+.button-sync {
+  margin-top: 25px;
+  -webkit-border-radius: 8px;
+  -khtml-border-radius: 8px;
+  -moz-border-radius: 8px;
+  -ms-border-radius: 8px;
+  -o-border-radius: 8px;
+  border-radius: 8px;
+  border-color: #727373;
+  font-size: 16px;
+}
+
+#syncButton {
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  width: 80%;
 }

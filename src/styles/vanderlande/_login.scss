@@ -107,3 +107,9 @@ $button-custom-active-border: darken(#727373, 10%) !default;
 	@include button-clear($button-custom-bg);
 	@include button-outline($button-custom-bg);
 }
+
+&.button-sync {
+	@include button-style($button-custom-bg, $button-custom-border, $button-custom-active-bg, $button-custom-active-border, $button-custom-text);
+	@include button-clear($button-custom-bg);
+	@include button-outline($button-custom-bg);
+}

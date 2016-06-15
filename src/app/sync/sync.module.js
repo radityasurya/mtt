@@ -7,6 +7,7 @@
 		'ngCordova',
 		'app.service',
 		'app.bag',
-		'app.station'
+		'app.station',
+		'angular-svg-round-progressbar'
 	]);
 })();
