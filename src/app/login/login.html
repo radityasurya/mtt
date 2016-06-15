@@ -15,7 +15,7 @@
 				<!-- Mode BUTTON -->
 				<div id="mode" ng-hide="vm.showLogin">
 					<button type="button" class="button button-block button-mode" ng-click="vm.showLogin = true; vm.isOnline = false;"><i class="icon ion-wifi"></i> Offline Mode</button>
-					<button type="button" class="button button-block button-mode" ng-click="vm.showLogin = true; vm.isOnline = true;"><i class="icon ion-wifi"></i> Online Mode</button>
+					<button ng-hide="!vm.isOnline" type="button" class="button button-block button-mode" ng-click="vm.checkRecords()"><i class="icon ion-wifi"></i> Online Mode</button>
 				</div>
 				<div ng-show="vm.showLogin">
 					<p class="item-instructions">Enter or scan credentials:</p>
@@ -36,7 +36,7 @@
 						<div class="row">
 							<div class="col">
 								<!-- BACK BUTTON -->
-								<button type="button" class="button button-block button-login" ng-click="vm.showLogin = false"> <i class="icon ion-ios-arrow-left"></i> Back</button>
+								<button type="button" class="button button-block button-login" ng-click="vm.showLogin = false"; vm.isOnline = true;> <i class="icon ion-ios-arrow-left"></i> Back</button>
 							</div>
 							<div class="col">
 								<!-- LOGIN BUTTON -->

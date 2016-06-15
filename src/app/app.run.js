@@ -10,14 +10,16 @@
                         '$cordovaSplashscreen',
                         '$rootScope',
                         '$ionicLoading',
-						'sqliteService'];
+						'sqliteService',
+                        'SessionService'];
 
 	function runBlock($ionicPlatform,
 		$timeout,
 		$cordovaSplashscreen,
 		$rootScope,
 		$ionicLoading,
-		sqliteService) {
+		sqliteService,
+        SessionService) {
 		$ionicPlatform.ready(function () {
 
 			// Splash Screen
@@ -62,7 +64,15 @@
 
 			//SQLite
 			sqliteService.preloadDatabase(true);
-
+            
+            $rootScope.$on('$cordovaNetwork:online', function(event, networkState) {
+                SessionService.setOnlineStatus(true);
+            });
+            
+            $rootScope.$on('$cordovaNetwork:offline', function(event, networkState) {
+                SessionService.setOnlineStatus(false);
+            });
+            
 		});
 	}
 })();

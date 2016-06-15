@@ -12,7 +12,8 @@
 		var service = {
 			getStations: getStations,
 			preload: preload, createTable: createTable,
-            offlineLogin: offlineLogin
+            offlineLogin: offlineLogin,
+            checkRecords: checkRecords
 		};
 		
 		return service;
@@ -38,6 +39,11 @@
         
         function offlineLogin(username) {
             var query = 'INSERT INTO "Users" ("Username") VALUES ("' + username + '");';
+            return $q.when(sqliteService.insert(query));
+        }
+        
+        function checkRecords() {
+            var query = 'SELECT * FROM BagsToProcess';
             return $q.when(sqliteService.insert(query));
         }
 	}

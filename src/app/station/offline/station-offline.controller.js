@@ -195,7 +195,6 @@
 
             confirmPopup.then(function (res) {
                 if (res) {
-                    SessionService.logout();
                     $state.go('login');
                 } else {
                     console.log('do nothing');

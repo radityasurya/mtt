@@ -42,7 +42,7 @@
         vm.filterStations = filterStations;
         vm.isCurrentStationExist = false;
         vm.check = isCurrentStationExist;
-        vm.isOnline = false;
+        vm.isOnline = SessionService.getOnlineStatus();
         vm.populateOfflineView = populateOfflineView;
             
         // activate();
@@ -53,7 +53,7 @@
 
             vm.isOnline = SessionService.getOnlineStatus();
 
-            if (SessionService.getOnlineStatus()) {
+            if (vm.isOnline) {
                 // Online
                 populateView();
             } else {

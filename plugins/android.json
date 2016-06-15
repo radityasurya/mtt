@@ -21,6 +21,9 @@
         },
         "cordova-sqlite-storage": {
             "PACKAGE_NAME": "com.vanderlande.MTT"
+        },
+        "cordova-plugin-network-information": {
+            "PACKAGE_NAME": "com.vanderlande.MTT"
         }
     },
     "dependent_plugins": {

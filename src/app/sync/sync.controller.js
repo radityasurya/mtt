@@ -14,7 +14,9 @@
                                         '$timeout',
                                         '$window',
                                         '$ionicPlatform',
-                                        'SyncService'];
+                                        'SyncService',
+                                        '$ionicPopup',
+                                        '$state'];
 
     /* @ngInject */
     function SyncController(UserService,
@@ -26,13 +28,16 @@
         $timeout,
         $window,
         $ionicPlatform,
-        SyncService) {
+        SyncService,
+        $ionicPopup,
+        $state) {
 
         // Variable
         var vm = this;
         vm.currentStation = SessionService.getCurrentStation().stationName;
         vm.back = back;
         vm.message = 'Uploading';
+        vm.logout = logout;
 
         $scope.current = 0;
         $scope.offset = 0;
@@ -185,6 +190,24 @@
             //restart sync
             startSync();
             console.log('success');
+        }
+        
+        function logout() {
+            console.log('logout');
+
+            var confirmPopup = $ionicPopup.confirm({
+                title: 'Logout',
+                template: 'Are you sure you want to logout?'
+            });
+
+            confirmPopup.then(function (res) {
+                if (res) {
+                    SessionService.logout();
+                    $state.go('login');
+                } else {
+                    console.log('do nothing');
+                }
+            });
         }
 
     }

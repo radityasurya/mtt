@@ -23,7 +23,8 @@
         // variable
         var currentStation = {};
         var currentMonitoredStations = {};
-        var isOnline = false;
+        var isOnline = true;
+        var appMode = 'online';
         
 		var service = {
 			fetchSupport: fetchSupport,
@@ -34,7 +35,9 @@
             setMonitoredStations: setMonitoredStations,
 			getMonitoredStations: getMonitoredStations,
             setOnlineStatus: setOnlineStatus,
-            getOnlineStatus: getOnlineStatus
+            getOnlineStatus: getOnlineStatus,
+            setMode: setMode,
+            getMode: getMode
 		};
 
 		return service;
@@ -134,6 +137,14 @@
         
         function getOnlineStatus() {
             return isOnline;
+        }
+        
+        function setMode(mode) {
+            appMode = mode;
+        }
+        
+        function getMode() {
+            return appMode;
         }
 
 	}
