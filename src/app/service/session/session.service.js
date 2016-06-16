@@ -74,7 +74,7 @@
 			var authdata = $base64.encode(username + ':' + password);
 			var defer = $q.defer();
 
-            if (isOnline) {
+            if (appMode == 'online') {
     
                 ApiService.restCall('Roles', authdata, '')
 				.then(function (response) {

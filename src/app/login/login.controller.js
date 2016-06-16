@@ -40,6 +40,7 @@
         vm.showLogin = false;
         vm.offline = offline;
         vm.checkRecords = checkRecords;
+        vm.loginMode = 'online';
 
         activate();
 
@@ -63,7 +64,9 @@
         }
 
         function login() {
-
+            
+            setMode(vm.loginMode);
+            
             // Keyboard Hack
             if ($window.cordova &&
                 $window.cordova.plugins) {
@@ -71,20 +74,24 @@
             }
             window.scrollTo(0, 0);
 
-            if (vm.isOnline) {
-
-                // Login function
-                SessionService.login(vm.username, vm.password)
-                    .then(function (data) { // Success
-                        $state.go('station');
-                        console.log(data);
-                    }, function (data) { // Error
-                        if (data.status === 0) {
+            if (vm.loginMode === 'online') {
+                
+                if (vm.isOnline) {
+                    // Login function
+                    SessionService.login(vm.username, vm.password)
+                        .then(function (data) { // Success
+                            $state.go('station');
+                            console.log(data);
+                        }, function (data) { // Error
+                            if (data.status === 0) {
                             toast('error', 'Connection Error', 'Not connected to the server', 5000);
-                        } else if (data.status === 401) {
-                            toast('error', 'Login Error', 'Wrong username or password', 5000);
-                        }
-                    });
+                            } else if (data.status === 401) {
+                                toast('error', 'Login Error', 'Wrong username or password', 5000);
+                            }
+                        });
+                } else {
+                    offline();
+                }
             } else {
                 offline();
             }
@@ -133,6 +140,10 @@
                 return 305;
             }
             return temp;
+        }
+        
+        function setMode(mode) {
+            SessionService.setMode(mode);
         }
 
         function offline() {

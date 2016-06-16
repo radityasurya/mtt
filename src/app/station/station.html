@@ -22,7 +22,7 @@
 		<ion-list class="list-station">
 			
 			<!-- STATION ITEM -->
-			<ion-item ng-show="vm.isOnline" class="item-location item-icon-left item-icon-right" ng-repeat="(key, value) in vm.filterStations(vm.type)" item="station" ui-sref="station-detail({stationName: key, stationType: value.type, locations: value.locations})">
+			<ion-item ng-show="vm.getMode === 'online'" class="item-location item-icon-left item-icon-right" ng-repeat="(key, value) in vm.filterStations(vm.type)" item="station" ui-sref="station-detail({stationName: key, stationType: value.type, locations: value.locations})">
 				
 				<!-- TYPE ICON -->
 				<i class="icon">
@@ -37,7 +37,7 @@
 			</ion-item>
 			
             <!-- OFFLINE STATION ITEM -->
-			<ion-item ng-show="!vm.isOnline" class="item-location item-icon-left item-icon-right" ng-repeat="station in vm.offlineStations" item="station" ui-sref="station-offline({stationName: station.StationName})">
+			<ion-item ng-show="vm.getMode === 'offline'" class="item-location item-icon-left item-icon-right" ng-repeat="station in vm.offlineStations" item="station" ui-sref="station-offline({stationName: station.StationName})">
 				
 				<!-- TYPE ICON -->
 				<i class="icon">
@@ -54,7 +54,7 @@
 		</ion-list>
 		
 	</ion-content>
-	<div class="bar bar-footer bar-dark" ng-show="vm.isOnline">
+	<div class="bar bar-footer bar-dark" ng-show="vm.getMode === 'online'">
 		<div class="button-bar bar-dark">
 			<a class="button" ng-click="vm.type = 'Screening'">Screen</a>
 			<a class="button" ng-click="vm.type = 'Store'">Store</a>

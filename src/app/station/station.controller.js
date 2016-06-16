@@ -52,11 +52,14 @@
         function activate() {
 
             vm.isOnline = SessionService.getOnlineStatus();
+            vm.getMode = SessionService.getMode();
+            console.log(vm.getMode);
 
-            if (vm.isOnline) {
+            if (vm.getMode === 'online') {
                 // Online
+                console.log('ini yang jalan');
                 populateView();
-            } else {
+            }  else {
                 // Offline
                 
                 var _stations = [];
