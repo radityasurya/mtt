@@ -119,7 +119,7 @@
 		 * @returns {string} &station=[currentStation]&device=[device]&StoreStation[]=[monitoredStations]
 		 */
 		function createParams(currentStation, device, monitoredStations) {
-			var _url = '&station=' + currentStation;
+			var _url = 'station=' + currentStation;
 			_url += '&device=' + device;
 	
 			// Add storeStation

@@ -11,18 +11,22 @@
 		
 		// Variable
 		// var _baseUrl = 'http://172.19.18.225';
-        //var _baseUrl = 'http://192.168.192.26';
-		var _baseUrl = 'http://172.28.30.59';
+        var _baseUrl = 'http://192.168.192.26';
+		// var _baseUrl = 'http://172.28.30.59';
 		var _supportedFunction = {};
 		var _timeout = 5000;
+        var _serverType = 'local';
 				
 		var service = {
 			getURL: getURL,
+            setURL: setURL,
 			getURI: getURI,
 			getMethod: getMethod,
 			supportedFunctions: supportedFunctions,
 			getTimeout: getTimeout,
 			setTimeout: setTimeout,
+            getServerType: getServerType,
+			setServerType: setServerType,
 			setSupportedFunctions: setSupportedFunctions,
 			getSupportedFunctions: getSupportedFunctions,
 			restCall: restCall
@@ -35,13 +39,23 @@
 		function getURL() {
 			return _baseUrl;
 		}
-				
+		function setURL(t) {
+			_baseUrl = t;
+		}
+        
 		function getTimeout() {
 			return _timeout;
 		}
-		
-		function setTimeout(t) {
+        function setTimeout(t) {
 			_timeout = t;
+		}
+		
+		function setServerType(t) {
+			_serverType = t;
+		}
+        
+        function getServerType() {
+			return _serverType;
 		}
 		
 		/**
@@ -119,30 +133,61 @@
 			if (angular.isUndefined(params)) {
 				params = '';
 			}
-			
-			var _url = getURI(name) + '?auth=' + auth;
+            
+			var _url = getURI(name);
+            
+            if (_serverType === 'local') {
+                _url += '?auth=' + auth + '&';
+            } else {
+                _url += '?';
+            }
+            
 			var _method = getMethod(name);
 						
 			if (_method === 'GET') {
 				_url += params;
 				console.log(_url);
-
-				return $http.get(_url);
+                
+                if (_serverType === 'local') {
+                    return $http.get(_url); 
+                } else {
+                    return $http({
+                        method: 'GET',
+                        url: _url,
+                        headers: {
+                            'Authorization': 'Basic ' + auth 
+                        }
+                    });
+                }
 			}
 			
 			if (_method === 'POST') {
 				console.log(params);
 				console.log(_url);
-				return $http({
-					url: _url,
-					method: 'POST',
-					data: params,
-					headers: {
-							'Content-Type': 'application/json',
-							'Accept': 'application/json',
-							'Accept-Language': 'en-GB'
-							}
-				});
+                if (_serverType === 'local') {
+                    return $http({
+                        url: _url,
+                        method: 'POST',
+                        data: params,
+                        headers: {
+                                'Content-Type': 'application/json',
+                                'Accept': 'application/json',
+                                'Accept-Language': 'en-GB'
+                                }
+                    });
+                } else {
+                    return $http({
+                        url: _url,
+                        method: 'POST',
+                        data: params,
+                        headers: {
+                                'Authorization': 'Basic ' + auth,
+                                'Content-Type': 'application/json',
+                                'Accept': 'application/json',
+                                'Accept-Language': 'en-GB'
+                                }
+                    });
+                }
 			}
 			
 			if (_method === 'PUT') {

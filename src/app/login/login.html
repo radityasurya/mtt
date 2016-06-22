@@ -16,6 +16,7 @@
 				<div id="mode" ng-hide="vm.showLogin">
 					<button type="button" class="button button-block button-mode" ng-click="vm.showLogin = true; vm.loginMode='offline'"><i class="icon ion-wifi"></i> Offline Mode</button>
 					<button ng-hide="!vm.isOnline" type="button" class="button button-block button-mode" ng-click="vm.checkRecords(); vm.loginMode='online'"><i class="icon ion-wifi"></i> Online Mode</button>
+					<button type="button" class="button button-block button-mode" ng-click="vm.setting()"><i class="icon ion-ios-gear"></i> Setting</button>
 				</div>
 				<div ng-show="vm.showLogin">
 					<p class="item-instructions">Enter or scan credentials:</p>

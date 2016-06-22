@@ -61,7 +61,7 @@
 		 * @returns {string} constructed URL (LPN+STATION+ISSCANNED+FORCECREATE)
 		 */
 		function createParams(lpn, currentStation) {
-			var _url = '&lpn=' + lpn;
+			var _url = 'lpn=' + lpn;
 			_url += '&station=' + currentStation;
 			_url += '&isLpnScanned=false&forceCreate=false&device=emulator'; 
 			

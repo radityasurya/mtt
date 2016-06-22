@@ -1,0 +1,26 @@
+<ion-modal-view>
+    <ion-header-bar class="bar bar-header bar-header-vanderlande">
+        <h1 class="title">MTT Setting</h1>
+        <button class="button button-primary" ng-click="modal.hide()">Close</button>
+    </ion-header-bar>
+    <ion-content class="padding">
+        <div class="list">
+            <div class="item item-divider">
+                Server Type
+            </div>
+            <ion-radio ng-repeat="item in serverType" ng-value="item.value" 
+            ng-model="setting.clientSide" ng-checked="item.checked">
+                {{ item.text }}
+            </ion-radio>
+            <div class="item item-divider">
+                Config
+            </div>
+            <label class="item item-input">
+                <span class="input-label">IP Server</span>
+                <input ng-model="setting.ipserver" type="text">
+            </label>
+            <br>
+            <button class="button button-block button-mode" ng-click="saveSetting()">Save</button>
+        </div>
+    </ion-content>
+</ion-modal-view>
