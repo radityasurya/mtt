@@ -41,11 +41,11 @@
     <splash density="port-xxhdpi" src="resources\android\splash\drawable-port-xxhdpi-screen.png" />
     <splash density="port-xxxhdpi" src="resources\android\splash\drawable-port-xxxhdpi-screen.png" />
     <name>MTT</name>
-    <description>
-        Manual track and trace application
+    <description>
+        Manual track and trace application
     </description>
-    <author email="raditya.pratama@vanderlande.com" href="http://radityasurya.com/">
-        Raditya Surya
+    <author email="raditya.pratama@vanderlande.com" href="http://radityasurya.com/">
+        Raditya Surya
     </author>
     <content src="index.html" />
     <access origin="*" />

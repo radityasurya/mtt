@@ -160,6 +160,7 @@
         $rootScope.$on('$cordovaNetwork:online', function(event, networkState) {
             SessionService.setOnlineStatus(true);
             vm.isOnline = true;
+			activate();
             // Check changes
 			$scope.$watch('vm.isOnline', function(newValue, oldValue) {
                 if (newValue !== oldValue) {
